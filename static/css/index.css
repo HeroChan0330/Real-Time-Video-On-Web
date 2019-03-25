@@ -1,0 +1,93 @@
+img.imgDisplay{
+	background-size: cover;
+	width: 100%;
+	height: 100px;
+	background-color: black;
+}
+.keyboard{
+    margin-bottom: 70px;
+}
+button.ctrlBtn{
+	margin: 10px;
+}
+.dock{
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 60px;
+	background-color: black;
+}
+
+
+input[type="range"].slider{
+    width: 100%;
+    display: block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;
+    /* background-color: white;
+    height: 10px;  */
+}
+
+input[type="range"].slider::-webkit-slider-runnable-track{
+    /* -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    height: 10px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;   */
+}
+
+input[type="range"].slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #007acc;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+
+input[type="range"].slider::-ms-track{
+    display: block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;
+}
+input[type="range"].slider::-ms-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color:white;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #007acc;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+input[type=range].slider::-ms-fill-lower {
+    /*进度条已填充的部分*/
+    height: 22px;
+    border-radius: 10px;
+    /*background: black;*/
+    background: #007acc;
+}
+
+input[type=range].slider::-ms-fill-upper {
+    /*进度条未填充的部分*/
+    height: 22px;
+    border-radius: 10px;
+    background: white;
+}

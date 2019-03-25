@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HC</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet"  href="css/index.css"/>
+    <link rel="stylesheet" href="css/Button.css" />
+    <script src="js/mui.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+    <script type="text/javascript">
+    	
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+   			
+   		});
+		$(window).ready(function(){
+			$(window).resize();
+			init();
+		})
+		//mui初始化
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+		$(window).resize(function(){
+			var width=$(window).width();
+			var height=width*9/16;
+			$("#display").css("width",width.toString()+"px");
+			$("#display").css("height",height.toString()+"px");
+		});
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">图像实时回传</h1>
+	</header>
+	<div class="mui-content">
+		<img id="display" src="../ImgRaw" class="imgDisplay"/>
+		<div class="mui-content-padded" style="margin: 5px;text-align: center;">
+			<div class="keyboard">
+				<p><button class="button button-royal button-circle button-giant ctrlBtn" comm="forward">↑</button></p>
+				<p>
+					<button class="button button-royal button-circle button-giant ctrlBtn" comm="left">←</button>
+					<button class="button button-caution button-circle button-giant ctrlBtn" comm="stop">○</button>
+					<button class="button button-royal button-circle button-giant ctrlBtn" comm="right">→</button>
+				</p>
+			</div>
+		</div>
+		<div class="dock">
+			<p style="font-size: 10px;">速度控制:</p>
+			<p style="padding-left: 20px; padding-right: 20px;">
+				<input id="speedCtrl" class="slider" type="range" min="0" max="15" step="1" value="7" style="background-color: white; height: 10px;">
+			</p>
+		</div>
+	</div>
+</body>
+</html>

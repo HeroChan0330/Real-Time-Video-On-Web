@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/Button.css" />
+		<link rel="stylesheet" href="css/MyButton.css" />
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<title></title>
+		<script type="text/javascript" charset="utf-8">
+			window.onresize = function() {
+
+				if(document.body.clientWidth < document.body.clientHeight) {
+					$("#display").css("display", "none");
+					$("#alarm").css("display", "block");
+
+				} else {
+					$("#display").css("display", "block");
+					$("#alarm").css("display", "none");
+
+				}
+				$(".back").css("width",window.innerWidth.toString()+"px").css("height",window.innerHeight.toString()+"px");
+
+			}
+
+			function toggleFullScreen() {
+				if(!document.fullscreenElement && // alternative standard method  
+					!document.mozFullScreenElement && !document.webkitFullscreenElement) { // current working methods  
+					if(document.documentElement.requestFullscreen) {
+						document.documentElement.requestFullscreen();
+					} else if(document.documentElement.mozRequestFullScreen) {
+						document.documentElement.mozRequestFullScreen();
+					} else if(document.documentElement.webkitRequestFullscreen) {
+						document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+					}
+				} else {
+					if(document.cancelFullScreen) {
+						document.cancelFullScreen();
+					} else if(document.mozCancelFullScreen) {
+						document.mozCancelFullScreen();
+					} else if(document.webkitCancelFullScreen) {
+						document.webkitCancelFullScreen();
+					}
+				}
+			}
+			window.onload = function() {
+				//    		document.getElementById("display").ontouchstart=function(event){
+				////    			console.log(event.touches);
+				//				document.getElementById("display").textContent="";
+				//    			for(var i=0;i<event.touches.length;i++){
+				//    				var touch=event.touches[i];
+				//    				var show="x:"+touch.clientX.toString()+" y:"+touch.clientY.toString();
+				//    				document.getElementById("display").textContent+=show+"\n";
+				//    				console.log(show);
+				//    			}
+				//    			console.log("");
+				//    		};
+				window.onresize();
+				var btns = document.getElementsByClassName("dirBtn");
+				for(var i = 0; i < btns.length; i++) {
+					btns[i].ontouchstart = function() {
+						$(this).addClass("dirBtnPressed");
+						onStartTouchDirBtn($(this).attr("comm"));
+					}
+
+					btns[i].ontouchend = function() {
+						$(this).removeClass("dirBtnPressed");
+						onEndTouchDirBtn($(this).attr("comm"))
+					}
+				}
+				$(".fullScreenBtn").click(function() {
+					if($(this).hasClass("cancelfullScreenBtn")) {
+						if(document.cancelFullScreen) {
+							document.cancelFullScreen();
+						} else if(document.mozCancelFullScreen) {
+							document.mozCancelFullScreen();
+						} else if(document.webkitCancelFullScreen) {
+							document.webkitCancelFullScreen();
+						}
+						$(this).removeClass("cancelfullScreenBtn");
+					} else {
+						if(document.documentElement.requestFullscreen) {
+							document.documentElement.requestFullscreen();
+						} else if(document.documentElement.mozRequestFullScreen) {
+							document.documentElement.mozRequestFullScreen();
+						} else if(document.documentElement.webkitRequestFullscreen) {
+							document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+						}
+						$(this).addClass("cancelfullScreenBtn");
+					}
+
+				});
+				$(".back").dblclick(function() {
+					toggleFullScreen();
+				});
+
+			}
+
+			function onStartTouchDirBtn(comm) {
+				console.log(comm);
+				$.get("../command?comm=SetDir&val=" + comm, function(data, status) {
+					if(data != "success") {
+						alert("指令发送失败")
+					}
+				});
+			}
+			function onEndTouchDirBtn(comm) {
+				console.log(comm);
+				$.get("../command?comm=ReleaseDir&val=" + comm, function(data, status) {
+					if(data != "success") {
+						alert("指令发送失败")
+					}
+				});
+			}
+		</script>
+	</head>
+	<!---->
+
+	<body class="fullScreen" style="background-color: black;" oncontextmenu='return false' ondragstart='return false' onselectstart='return false' oncopy='document.selection.empty()' onbeforecopy='return false' onmouseup='document.selection.empty()'>
+
+		<div class="fullScreen" style="background-color: black;color: white;padding: 0; display: none;" id="display">
+			<img class="back" src="../ImgRaw" />
+			<!--<a class="button button-caution button-pill button-jumbo" id="btn1">Go</a>
+	<a class="button button-caution button-pill button-jumbo" id="btn2">Go</a>-->
+			<span class="dirBtn dirBtnUp" comm="forward"></span>
+			<span class="dirBtn dirBtnDown" comm="left"></span>
+			<span class="dirBtn dirBtnLeft" comm="downward"></span>
+			<span class="dirBtn dirBtnRight" comm="right"></span>
+			<span class="fullScreenBtn"></span>
+			<div id="show"></div>
+		</div>
+		<div class="fullScreen" style="font-size: 36px;color: white;text-align: center;" id="alarm">
+			<span style="margin: 40% 0%;">
+		需要横屏使用
+	</span>
+		</div>
+	</body>
+
+</html>
