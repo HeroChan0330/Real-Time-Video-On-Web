@@ -1,5 +1,6 @@
 #coding:utf8
 import sys
+import Ctrl
 reload(sys)
 sys.setdefaultencoding('utf8')
 #fucking problem of py 2.* 
@@ -30,7 +31,6 @@ def responseImgStream():
         while True:
             success, image = video.read()
             ret, jpeg = cv2.imencode('.jpg', image)
-            
             frame=jpeg.tostring()
             # print("frame:",frame)
             yield (b'--frame\r\n'
@@ -39,31 +39,18 @@ def responseImgStream():
     except:
         print("connect lose or fail to capture image")
     finally:
-        # video.release()
+        # if video.isOpened():
+        #     video.release()
         pass
 
 @networkServer.route('/command',methods=["GET"])
 def command():
     comm=request.args.get('comm')
     val=request.args.get('val')
-    # if comm=='SetDir':
-    #     if val=="forward":
-    #         goAhead(fishSpeed)
-    #         # setDirection(0,0)
-    #     elif val=="left":
-    #         # setDirection(-1,3)
-    #         turnLeft(fishSpeed,3)
-    #     elif val=="right":
-    #         # setDirection(1,3)
-    #         turnRight(fishSpeed,3)
-    #     elif val=="stop":
-    #         # setDirection(0,0)
-    #         stopFish()
-    # elif comm=='SetSpeed':
-    #     fishSpeed=int(val)
-    #     setSpeed(int(val))
-    # else:
-    #     return "fail"
+    if comm=='SetDir':
+        Ctrl.dirBtnPress(val)
+    elif comm=='ReleaseDir':
+        Ctrl.dirBtnRelease(val)
     return "success"
 
 @networkServer.route('/ImgRaw')
@@ -76,7 +63,6 @@ def ImgRaw():
 
 def run():
     global networkServer
-    # thread.start_new_thread( updateImgThread, ("updateImgThread-1", 0, ) )
     with networkServer.test_request_context():
         url_for('static', filename='index.html')
         url_for('static', filename='Video.html')

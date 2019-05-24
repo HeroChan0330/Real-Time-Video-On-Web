@@ -5,8 +5,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="css/Button.css" />
-		<link rel="stylesheet" href="css/MyButton.css" />
-		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/jquery.min.js"></script>
 		<title></title>
 		<script type="text/javascript" charset="utf-8">
 			window.onresize = function() {
@@ -20,7 +20,14 @@
 					$("#alarm").css("display", "none");
 
 				}
-				$(".back").css("width",window.innerWidth.toString()+"px").css("height",window.innerHeight.toString()+"px");
+				var height=window.innerHeight;
+				var width=height*16/9;
+				if(window.innerWidth<window.innerHeight*16/9){
+					width=window.innerWidth;
+					height=width*9/16;
+				}
+				var left=(window.innerWidth-width)/2,top=(window.innerHeight-height)/2;
+				$(".back").css("width",width.toString()+"px").css("height",height.toString()+"px").css("left",left.toString()+"px").css("top",top.toString()+"px");
 
 			}
 
@@ -88,6 +95,8 @@
 							document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
 						}
 						$(this).addClass("cancelfullScreenBtn");
+						// setTimeout(function(){ window.onresize(); }, 1000);
+						
 					}
 
 				});
@@ -124,8 +133,8 @@
 			<!--<a class="button button-caution button-pill button-jumbo" id="btn1">Go</a>
 	<a class="button button-caution button-pill button-jumbo" id="btn2">Go</a>-->
 			<span class="dirBtn dirBtnUp" comm="forward"></span>
-			<span class="dirBtn dirBtnDown" comm="left"></span>
-			<span class="dirBtn dirBtnLeft" comm="downward"></span>
+			<span class="dirBtn dirBtnDown" comm="downward"></span>
+			<span class="dirBtn dirBtnLeft" comm="left"></span>
 			<span class="dirBtn dirBtnRight" comm="right"></span>
 			<span class="fullScreenBtn"></span>
 			<div id="show"></div>

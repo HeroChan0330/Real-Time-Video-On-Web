@@ -1,93 +1,70 @@
-img.imgDisplay{
-	background-size: cover;
-	width: 100%;
-	height: 100px;
-	background-color: black;
-}
-.keyboard{
-    margin-bottom: 70px;
-}
-button.ctrlBtn{
-	margin: 10px;
-}
-.dock{
+span.dirBtn{
 	position: fixed;
-	left: 0;
-	right: 0;
+	width: 14%;
+	height: 16%;
+
+	background-image: url(../img/DirKey.png);
+	background-repeat-y:no-repeat;
+	background-repeat-x:no-repeat;
+	background-size:100% 100%;
+	border-style: none;
+}
+span.dirBtnUp{
+	bottom: 25%;
+	left: 10%;
+}
+span.dirBtnDown{
+	bottom: 5%;
+	left: 10%;
+	transform: rotate(180deg);
+}
+
+span.dirBtnLeft{
+	bottom: 12%;
+	right: 20%;
+	transform: rotate(-90deg);
+}
+span.dirBtnRight{
+	bottom: 12%;
+	right: 10%;
+	transform: rotate(90deg);
+}
+span.dirBtnPressed{
+	background-image: url(../img/DirKeyPressed.png);
+}
+span.fullScreenBtn{
+	position: fixed;
+	left: 10px;
+	top: 10px;
+	width: 8%;
+	height: 8%;
+	padding: 0;
+	margin: 0;
+	
+	background-repeat-y:no-repeat;
+	background-repeat-x:no-repeat;
+	background-repeat:no-repeat;
+	background-size:contain;
+	background-image: url(../img/FullScreen.png);
+}
+span.cancelfullScreenBtn{
+
+	background-image: url(../img/CancelFullScreen.png);
+}
+.fullScreen{
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	right: 0; 
 	bottom: 0;
-	height: 60px;
-	background-color: black;
 }
-
-
-input[type="range"].slider{
-    width: 100%;
-    display: block;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border-radius: 5px;
-    margin: 0 auto;
-    outline: 0;
-    /* background-color: white;
-    height: 10px;  */
-}
-
-input[type="range"].slider::-webkit-slider-runnable-track{
-    /* -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: white;
-    height: 10px;
-    border-radius: 5px;
-    margin: 0 auto;
-    outline: 0;   */
-}
-
-input[type="range"].slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #007acc;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 2px solid white;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-
-input[type="range"].slider::-ms-track{
-    display: block;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: white;
-    width: 100%;
-    height: 10px;
-    border-radius: 5px;
-    margin: 0 auto;
-    outline: 0;
-}
-input[type="range"].slider::-ms-thumb {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color:white;
-    width: 22px;
-    height: 22px;
-    border: 2px solid #007acc;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-input[type=range].slider::-ms-fill-lower {
-    /*进度条已填充的部分*/
-    height: 22px;
-    border-radius: 10px;
-    /*background: black;*/
-    background: #007acc;
-}
-
-input[type=range].slider::-ms-fill-upper {
-    /*进度条未填充的部分*/
-    height: 22px;
-    border-radius: 10px;
-    background: white;
+img.back{
+	position:fixed;
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0;
+	background-repeat-y:no-repeat;
+	background-repeat-x:no-repeat;
+	background-size: auto;
 }
